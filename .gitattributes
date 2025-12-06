@@ -6,7 +6,6 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
-
 # Binary files
 *.onnx binary
 *.bin binary
@@ -25,4 +24,5 @@
 *.ckpt -merge
 # Large File Storage
 model/ filter=lfs diff=lfs merge=lfs -text
+model filter=lfs diff=lfs merge=lfs -text
 model/* filter=lfs diff=lfs merge=lfs -text
