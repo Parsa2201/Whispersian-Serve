@@ -1,31 +1,35 @@
 # Whispersian-Serve
+A simple FastAPI backend for transcribing Persian audio files into plain text using the onnx whisper model.
 
-# 1. Installation
-Install the dependencies using the requirements.txt.
+## Features
+- Upload audio files for transcription
+- Support for `.wav` audio format
+- Returns transcription text as JSON
+
+## Installation
+1. Clone the repository:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/Parsa2201/Whispersian-Serve.git
+cd Whispersian-Serve
 ```
 
-# 2. Usage
-At this moment, the usable files are:
-```
-serve.py
-```
-
-## Serve the onnx
-For testing if the fine-tuned onnx model is working, run the `serve.py` with uvicorn.
+2. Run the backend using docker:
 ```bash
-python -m uvicorn serve:app
+docker compose up
 ```
-Send a request in this format (the file should be in `.wav` format with 16000 sample rate):
+
+## Usage
+After running the background, it should be working on http://localhost:8000.
+For a transcription request, send request in this format to the url http://localhost:8000/transcribe:
+```bash
+curl -X POST "http://127.0.0.1:8000/transcribe" -F "file=@audio.wav"
+```
+The response should be like this:
 ```json
 {
-    "file": File
+    "text": "Your transcription."
 }
 ```
-It will send the transcription after a while in this format:
-```json
-{
-    "text": Transcription
-}
-```
+
+## Change model
+For using another model, copy the `encode.onnx` and `decoder.onnx` produced by the project Whispersian-Trainer to the directory `model/`. The backend then uses this new model for transcription.
