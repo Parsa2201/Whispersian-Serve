@@ -22,7 +22,7 @@ docker compose up
 After running the background, it should be working on http://localhost:8000.
 For a transcription request, send request in this format to the url http://localhost:8000/transcribe:
 ```bash
-curl -X POST "http://127.0.0.1:8000/transcribe" -F "file=@audio.wav"
+curl -X POST "http://127.0.0.1:8000/transcribe" -F "file=@path/to/audio.wav"
 ```
 The response should be like this:
 ```json
@@ -33,3 +33,14 @@ The response should be like this:
 
 ## Change model
 For using another model, copy the `encode.onnx` and `decoder.onnx` produced by the project Whispersian-Trainer to the directory `model/`. The backend then uses this new model for transcription.
+- Warning: **DO NOT CHANGE THE `*.prototxt` FILES.**
+
+## Test
+For testing, run:
+```bash
+python -m pytest -v
+```
+If you change the model, add `test.csv` to directory `model/test` and write test rows to ensure that the onnx you have brought is the same as your actual fine-tuned model. Fill in the `model/test/audio` directory with your test `.wav` audios. In `test.csv` the name of those audio files (without `.wav` extension) with their transcription by the actual model should be inserted. The structure of the `test.csv` file should be:
+```csv
+filename,transcript
+```

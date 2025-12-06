@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SAMPLE_RATE = os.environ.get("SAMPLE_RATE")
-BATCH_SIZE = os.environ.get("BATCH_SIZE")
+SAMPLE_RATE = int(os.environ.get("SAMPLE_RATE"))
+BATCH_SIZE = int(os.environ.get("BATCH_SIZE"))
 
 # DEVICE = "cpu"
 # if torch.cuda.is_available():
