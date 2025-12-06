@@ -1,0 +1,12 @@
+name: whispersian-serve
+
+services:
+  serve:
+    build: .
+    volumes:
+      - type: bind
+        source: ./model
+        target: /app/model
+        read_only: True
+    ports:
+      - 8000:8000
