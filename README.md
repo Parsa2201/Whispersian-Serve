@@ -44,7 +44,9 @@ For testing, run:
 ```bash
 python -m pytest -v
 ```
-If you change the model, add `test.csv` to directory `model/test` and write test rows to ensure that the onnx you have brought is the same as your actual fine-tuned model. Fill in the `model/test/audio` directory with your test `.wav` audios. In `test.csv` the name of those audio files (without `.wav` extension) with their transcription by the actual model should be inserted. The structure of the `test.csv` file should be:
+If you change the model, add `test.csv` to directory `model/test` and write test rows to ensure that the onnx you have brought is the same as your actual fine-tuned model.
+Fill in the `model/test/audio` directory with your test `.wav` audios. In `test.csv` the name of those audio files (without `.wav` extension) with their transcription by the actual model should be inserted.
+The structure of the `test.csv` file should be:
 ```csv
 filename,transcript
 ```
