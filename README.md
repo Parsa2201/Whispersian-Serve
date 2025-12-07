@@ -13,7 +13,11 @@ git clone https://github.com/Parsa2201/Whispersian-Serve.git
 cd Whispersian-Serve
 ```
 
-2. Run the backend using docker:
+2. Copy the `example.env` and rename the file as `.env`.
+Ensure that `SAMPLE_AUDIO` is set correctly in the environment code.
+Based on your model type, you may also want to change the `MODEL_TYPE` to your whisper size (i.e. `base`, `small`, `medium`, ...).
+
+3. Run the backend using docker:
 ```bash
 docker compose up
 ```
