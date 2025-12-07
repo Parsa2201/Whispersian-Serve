@@ -9,7 +9,7 @@ from src.config import *
 client = TestClient(app)
 
 def test_transcription_module_structure():
-    model = OnnxTrans(model_path='./model')
+    model = OnnxTrans(model_path=MODEL_PATH, model_type=MODEL_TYPE)
     assert type(model.transcribe([SAMPLE_AUDIO])[0]) == str
 
 def test_transcription_module_validity():
@@ -25,7 +25,7 @@ def test_transcription_module_validity():
     model = OnnxTrans(model_path=MODEL_PATH, model_type=MODEL_TYPE)
 
     for _, row in df.iterrows():
-        audio_file = os.path.join(test_audio_dir, f"{row["filename"]}.wav")
+        audio_file = os.path.join(test_audio_dir, f"{row['filename']}.wav")
         assert os.path.exists(audio_file)
 
         transcription = model.transcribe([audio_file])[0]
@@ -36,13 +36,13 @@ def test_transcription_module_validity():
 
 def test_transcription_api_status_code():
     with open(SAMPLE_AUDIO, "rb") as f:
-        response = client.post("transcribe", files={'file': f})
+        response = client.post("/transcribe", files={'file': f})
 
     assert response.status_code == 200
 
 def test_transcription_api_output_structure():
     with open(SAMPLE_AUDIO, "rb") as f:
-        response = client.post("transcribe", files={'file': f})
+        response = client.post("/transcribe", files={'file': f})
 
     data = response.json()
     assert "text" in data

@@ -10,3 +10,13 @@ services:
         read_only: True
     ports:
       - 8000:8000
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.tests
+    volumes:
+      - type: bind
+        source: ./model
+        target: /app/model
+        read_only: True
