@@ -22,7 +22,7 @@ def test_transcription_module_validity():
         pytest.skip("No data test 'model/test/test.csv'")
     
     df = pd.read_csv(test_csv_path)
-    model = OnnxTrans(model_path='./model')
+    model = OnnxTrans(model_path=MODEL_PATH, model_type=MODEL_TYPE)
 
     for _, row in df.iterrows():
         audio_file = os.path.join(test_audio_dir, f"{row["filename"]}.wav")

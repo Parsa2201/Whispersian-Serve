@@ -15,7 +15,7 @@ async def transcribe_audio(file: UploadFile):
     with open(audio_path, "wb") as f_out:
         f_out.write(audio_bytes)
 
-    model = OnnxTrans(model_path=MODEL_PATH)
+    model = OnnxTrans(model_path=MODEL_PATH, model_type=MODEL_TYPE)
     text = model.transcribe([audio_path])[0]
 
     return {"text": text}
